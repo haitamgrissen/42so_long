@@ -6,7 +6,7 @@
 /*   By: hgrissen <hgrissen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 18:30:26 by hgrissen          #+#    #+#             */
-/*   Updated: 2021/11/05 16:02:07 by hgrissen         ###   ########.fr       */
+/*   Updated: 2021/11/06 14:45:08 by hgrissen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*get_file(char **av)
 	char	*line;
 	char	*str;
 
-	fd = open(av[1], O_RDONLY);
+	fd = open(av[0], O_RDONLY);
 	str = ft_strdup("");
 	if (fd < 0)
 		exit_error(1);

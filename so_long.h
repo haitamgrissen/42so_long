@@ -6,7 +6,7 @@
 /*   By: hgrissen <hgrissen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:17:07 by hgrissen          #+#    #+#             */
-/*   Updated: 2021/11/05 15:23:26 by hgrissen         ###   ########.fr       */
+/*   Updated: 2021/11/06 15:06:58 by hgrissen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@
 # include <stdlib.h>
 # include <mlx.h>
 # include <math.h>
+# include <sys/time.h>
 # include <signal.h>
+# include <string.h> 
 # include "./basic/libft.h"
 # include "./gnl/get_next_line.h"
 
@@ -76,6 +78,9 @@ typedef struct s_img {
 int	g_width;
 int	g_height;
 
+int g_x;
+int g_y;
+
 typedef struct s_textures
 {
 	t_img	p;
@@ -90,6 +95,8 @@ typedef struct s_player
 	t_input	input;
 	int		step;
 	int		coins;
+	int		collected;
+	int		col_bool;
 	int		end;
 	char	**map;
 }			t_player;
@@ -105,6 +112,7 @@ typedef struct s_mlx
 	int			end;
 	t_player	*plyr;
 	t_textures	tex;
+	char		**av;
 }				t_mlx;
 
 int		update(void *mlx);
@@ -151,4 +159,8 @@ void	game(t_mlx *mlx);
 int		check_input(t_input input);
 void	resolution(char **map);
 
+void	get_texture(t_mlx *mlx);
+void	check_tex_err(t_mlx *mlx, int code);
+uint64_t	get_time(void);
+uint64_t starttime;
 #endif

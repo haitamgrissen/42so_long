@@ -6,7 +6,7 @@
 /*   By: hgrissen <hgrissen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:23:28 by hgrissen          #+#    #+#             */
-/*   Updated: 2021/11/05 15:18:22 by hgrissen         ###   ########.fr       */
+/*   Updated: 2021/11/06 15:02:30 by hgrissen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,10 @@ void	get_texture(t_mlx *mlx)
 			"./textures/exit.xpm", &w, &h);
 	mlx->tex.p.img = mlx_xpm_file_to_image(mlx->mlx,
 			"./textures/player.xpm", &w, &h);
-	mlx->tex.w.img = mlx_xpm_file_to_image(mlx->mlx,
-			"./textures/grass1.xpm", &w, &h);
 	mlx->tex.s.img = mlx_xpm_file_to_image(mlx->mlx,
-			"./textures/grass2.xpm", &w, &h);
+			"./textures/grass.xpm", &w, &h);
+	mlx->tex.w.img = mlx_xpm_file_to_image(mlx->mlx,
+			"./textures/floor.xpm", &w, &h);
 	check_tex_err(mlx, 0);
 	mlx->tex.c.addr = (unsigned int *)mlx_get_data_addr(mlx->tex.c.img,
 			&mlx->tex.c.bpp, &mlx->tex.c.ll, &mlx->tex.c.end);
@@ -102,19 +102,23 @@ void	get_texture(t_mlx *mlx)
 			&mlx->tex.s.bpp, &mlx->tex.s.ll, &mlx->tex.s.end);
 }
 
+
+
 int	main(int ac, char **av)
 {
 	t_mlx	*mlx;
 	char	**map;
 
-	if (ac != 2)
+	if (ac < 2)
 		return (exit_error(0));
-	map = get_map(av);
+	map = get_map(av + 1);
 	resolution(map);
 	mlx = init_canvas();
+	mlx->av = av;
 	get_texture(mlx);
 	check_tex_err(mlx, 1);
 	init_player(mlx, map);
+	starttime = get_time();
 	mlx_loop_hook(mlx->mlx, update, mlx);
 	mlx_loop(mlx);
 }

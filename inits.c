@@ -6,7 +6,7 @@
 /*   By: hgrissen <hgrissen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 17:37:39 by hgrissen          #+#    #+#             */
-/*   Updated: 2021/11/05 15:23:26 by hgrissen         ###   ########.fr       */
+/*   Updated: 2021/11/06 10:50:07 by hgrissen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	init_player(t_mlx *mlx, char **map)
 	mlx->plyr->map = map;
 	mlx->plyr->step = 0;
 	mlx->plyr->end = 0;
+	mlx->plyr->collected = 0;
+	mlx->plyr->col_bool = 0;
 	mlx->plyr->coins = get_coins(mlx->plyr->map);
 }
 

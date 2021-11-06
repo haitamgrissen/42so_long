@@ -6,7 +6,7 @@
 /*   By: hgrissen <hgrissen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 16:26:07 by hgrissen          #+#    #+#             */
-/*   Updated: 2021/11/05 14:23:07 by hgrissen         ###   ########.fr       */
+/*   Updated: 2021/11/06 13:54:59 by hgrissen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ void	collisions(t_mlx *mlx, t_pos *pos, t_input input)
 		{
 			mlx->plyr->map[pos->y][pos->x] = '0';
 			mlx->plyr->step++;
-			printf("%d\n", mlx->plyr->step);
+			printf("Steps : %d || ", mlx->plyr->step);
+			printf("Collected : %d || ", mlx->plyr->collected);
+			printf("Coins Left : %d\n", mlx->plyr->coins);
 			printf("Congrats!!!!!!!!!!\n");
 			mlx->plyr->end = 1;
 			return ;
@@ -73,10 +75,16 @@ void	collisions(t_mlx *mlx, t_pos *pos, t_input input)
 		if (check_input(input))
 		{
 			mlx->plyr->step++;
-			printf("%d\n", mlx->plyr->step);
+			printf("Steps : %d || ", mlx->plyr->step);
+			printf("Collected : %d || ", mlx->plyr->collected);
+			printf("Coins Left : %d\n", mlx->plyr->coins);
 		}
 		if (col_collision(mlx->plyr->map, pos, input))
+		{
+			printf("You Got a Coin\n");
+			mlx->plyr->collected++;
 			mlx->plyr->coins--;
+		}
 		update_map(mlx->plyr->map, pos, input);
 	}
 }
@@ -101,5 +109,11 @@ void	game(t_mlx *mlx)
 {
 	if (mlx->plyr->end == 1)
 		return ;
+	if (mlx->plyr->coins == 0 && mlx->plyr->col_bool == 0)
+	{
+		mlx->plyr->col_bool = 1;
+		printf("Door Unlocked\n");
+	}
+	
 	move_player((t_mlx *)mlx);
 }
