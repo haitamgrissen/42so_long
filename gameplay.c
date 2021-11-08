@@ -6,7 +6,7 @@
 /*   By: hgrissen <hgrissen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 16:26:07 by hgrissen          #+#    #+#             */
-/*   Updated: 2021/11/06 13:54:59 by hgrissen         ###   ########.fr       */
+/*   Updated: 2021/11/06 15:41:53 by hgrissen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	collisions(t_mlx *mlx, t_pos *pos, t_input input)
 			printf("Steps : %d || ", mlx->plyr->step);
 			printf("Collected : %d || ", mlx->plyr->collected);
 			printf("Coins Left : %d\n", mlx->plyr->coins);
+			play_damage_sfx(1);
 			printf("Congrats!!!!!!!!!!\n");
 			mlx->plyr->end = 1;
 			return ;
@@ -82,6 +83,7 @@ void	collisions(t_mlx *mlx, t_pos *pos, t_input input)
 		if (col_collision(mlx->plyr->map, pos, input))
 		{
 			printf("You Got a Coin\n");
+			play_damage_sfx(0);
 			mlx->plyr->collected++;
 			mlx->plyr->coins--;
 		}

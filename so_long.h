@@ -6,7 +6,7 @@
 /*   By: hgrissen <hgrissen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:17:07 by hgrissen          #+#    #+#             */
-/*   Updated: 2021/11/06 15:06:58 by hgrissen         ###   ########.fr       */
+/*   Updated: 2021/11/06 15:42:56 by hgrissen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <sys/types.h>
 # include <sys/stat.h>
+# include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -162,5 +163,7 @@ void	resolution(char **map);
 void	get_texture(t_mlx *mlx);
 void	check_tex_err(t_mlx *mlx, int code);
 uint64_t	get_time(void);
+
+void    play_damage_sfx(int i);
 uint64_t starttime;
 #endif

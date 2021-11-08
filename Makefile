@@ -1,7 +1,7 @@
 SRC =	collisions.c exit_errors.c file_errors.c gameplay.c inits.c inputs.c main.c parser.c pipeline.c shapes.c \
 		gnl/get_next_line.c gnl/get_next_line_utils.c \
  		basic/ft_bzero.c basic/ft_calloc.c basic/ft_memset.c basic/ft_split.c basic/ft_strdup.c basic/ft_strjoin.c \
-		 basic/ft_strlen.c basic/ft_substr.c
+		 basic/ft_strlen.c basic/ft_substr.c sfx.c
 
 
 OBJ =	collisions.o exit_errors.o file_errors.ogameplay.o inits.o inputs.o main.o parser.o pipeline.o shapes.o \
@@ -32,6 +32,6 @@ fclean: clean
 	rm -f $(NAME)
 
 run:
-	./$(NAME) map.ber
+	./$(NAME) *.ber
 	
 re: fclean all
